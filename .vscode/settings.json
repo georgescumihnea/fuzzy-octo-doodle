@@ -1,0 +1,11 @@
+{
+  "cmake.useCMakePresets": "always",
+  "cmake.configureOnOpen": false,
+  "cmake.defaultConfigurePreset": "debug",
+  "cmake.defaultBuildPreset": "debug",
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "files.associations": {
+    "*.vert": "glsl",
+    "*.frag": "glsl"
+  }
+}

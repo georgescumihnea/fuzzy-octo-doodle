@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "configure-debug",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/invoke_in_vs_dev_shell.ps1",
+        "-Command",
+        "cmake --preset debug"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "build-debug",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/invoke_in_vs_dev_shell.ps1",
+        "-Command",
+        "cmake --build --preset debug --config Debug"
+      ],
+      "dependsOn": "configure-debug",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "compile-shaders",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/invoke_in_vs_dev_shell.ps1",
+        "-Command",
+        "cmake --build --preset debug --config Debug --target compile_shaders"
+      ],
+      "dependsOn": "configure-debug",
+      "problemMatcher": []
+    },
+    {
+      "label": "run-app",
+      "type": "shell",
+      "command": "${workspaceFolder}/build/debug/bin/Debug/vulkan_triangle.exe",
+      "dependsOn": "build-debug",
+      "options": {
+        "cwd": "${workspaceFolder}/build/debug/bin/Debug"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Vulkan Triangle",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/debug/bin/Debug/vulkan_triangle.exe",
+      "cwd": "${workspaceFolder}/build/debug/bin/Debug",
+      "preLaunchTask": "build-debug",
+      "console": "integratedTerminal"
+    }
+  ]
+}
