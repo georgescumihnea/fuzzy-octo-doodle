@@ -91,6 +91,8 @@ endif()
 set(VULKAN_TRIANGLE_SHADER_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/shaders/triangle.vert"
     "${CMAKE_CURRENT_SOURCE_DIR}/shaders/triangle.frag"
+    "${CMAKE_CURRENT_SOURCE_DIR}/shaders/fire.vert"
+    "${CMAKE_CURRENT_SOURCE_DIR}/shaders/fire.frag"
 )
 
 if(VULKAN_TRIANGLE_SHADER_COMPILER)
@@ -107,6 +109,18 @@ if(VULKAN_TRIANGLE_SHADER_COMPILER)
         COMMAND ${CMAKE_COMMAND}
             -DINPUT_FILE=${CMAKE_CURRENT_SOURCE_DIR}/shaders/triangle.frag
             -DOUTPUT_FILE=$<TARGET_FILE_DIR:vulkan_triangle>/shaders/triangle.frag.spv
+            -DCOMPILER=${VULKAN_TRIANGLE_SHADER_COMPILER}
+            -DMODE=${VULKAN_TRIANGLE_SHADER_COMPILER_MODE}
+            -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CompileShader.cmake
+        COMMAND ${CMAKE_COMMAND}
+            -DINPUT_FILE=${CMAKE_CURRENT_SOURCE_DIR}/shaders/fire.vert
+            -DOUTPUT_FILE=$<TARGET_FILE_DIR:vulkan_triangle>/shaders/fire.vert.spv
+            -DCOMPILER=${VULKAN_TRIANGLE_SHADER_COMPILER}
+            -DMODE=${VULKAN_TRIANGLE_SHADER_COMPILER_MODE}
+            -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CompileShader.cmake
+        COMMAND ${CMAKE_COMMAND}
+            -DINPUT_FILE=${CMAKE_CURRENT_SOURCE_DIR}/shaders/fire.frag
+            -DOUTPUT_FILE=$<TARGET_FILE_DIR:vulkan_triangle>/shaders/fire.frag.spv
             -DCOMPILER=${VULKAN_TRIANGLE_SHADER_COMPILER}
             -DMODE=${VULKAN_TRIANGLE_SHADER_COMPILER_MODE}
             -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CompileShader.cmake
